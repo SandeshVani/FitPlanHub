@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>Create Plan</h1>
+
+        <form method="POST">
+            <label>Title</label>
+            <input type="text" name="title" required>
+
+            <label>Description</label>
+            <textarea name="description" rows="4" required></textarea>
+
+            <label>Price</label>
+            <input type="number" name="price" required>
+
+            <label>Duration (days)</label>
+            <input type="number" name="duration" required>
+
+            <button type="submit">Create</button>
+        </form>
+
+        <p class="mt-20"><a href="/dashboard">Back</a></p>
+    </div>
+</body>
+</html>

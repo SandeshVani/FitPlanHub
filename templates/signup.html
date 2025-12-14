@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/login">Login</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert">{{ m }}</div>
+        {% endfor %}
+
+        <h1>Create Account</h1>
+
+        <form method="POST">
+            <label>Username</label>
+            <input type="text" name="username" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>I am a</label>
+            <select name="role">
+                <option value="user">User</option>
+                <option value="trainer">Trainer</option>
+            </select>
+
+            <button type="submit">Signup</button>
+        </form>
+
+        <p class="mt-20">Have account? <a href="/login">Login</a></p>
+    </div>
+</body>
+</html>

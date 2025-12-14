@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ trainer.username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/feed">Feed</a>
+        <a href="/browse">Browse</a>
+        <a href="/following">Following</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert alert-success">{{ m }}</div>
+        {% endfor %}
+
+        <h1>{{ trainer.username }}</h1>
+        <p>Trainer</p>
+
+        {% if following %}
+        <a href="/unfollow/{{ trainer.id }}" class="btn btn-danger">Unfollow</a>
+        {% else %}
+        <a href="/follow/{{ trainer.id }}" class="btn">Follow</a>
+        {% endif %}
+
+        <h2 class="mt-20">Plans</h2>
+
+        {% if plans %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Days</th>
+                <th></th>
+            </tr>
+            {% for p in plans %}
+            <tr>
+                <td>{{ p.title }}</td>
+                <td>Rs {{ p.price }}</td>
+                <td>{{ p.duration }}</td>
+                <td><a href="/plan/{{ p.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No plans yet</p>
+        {% endif %}
+    </div>
+</body>
+</html>

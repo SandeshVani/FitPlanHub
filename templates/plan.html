@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ plan.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/feed">Feed</a>
+        <a href="/browse">Browse</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert alert-success">{{ m }}</div>
+        {% endfor %}
+
+        <h1>{{ plan.title }}</h1>
+        <p>By <a href="/trainer/{{ trainer.id }}">{{ trainer.username }}</a></p>
+        <p>Price: Rs {{ plan.price }}</p>
+        <p>Duration: {{ plan.duration }} days</p>
+
+        <hr>
+
+        {% if has_access %}
+        <h2>Full Details</h2>
+        <p>{{ plan.description }}</p>
+        <p style="color:green"><b>You own this plan</b></p>
+        {% else %}
+        <h2>Preview</h2>
+        <p><i>Buy to see full plan</i></p>
+        <a href="/buy/{{ plan.id }}" class="btn">Buy - Rs {{ plan.price }}</a>
+        {% endif %}
+
+        <p class="mt-20"><a href="/browse">Back</a></p>
+    </div>
+</body>
+</html>

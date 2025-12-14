@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browse Plans</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/feed">Feed</a>
+        <a href="/browse">Browse</a>
+        <a href="/following">Following</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        <h1>All Plans</h1>
+
+        {% if plans %}
+        <table>
+            <tr>
+                <th>Plan</th>
+                <th>Trainer</th>
+                <th>Price</th>
+                <th>Days</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            {% for item in plans %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td><a href="/trainer/{{ item.trainer_id }}">{{ item.trainer }}</a></td>
+                <td>Rs {{ item.price }}</td>
+                <td>{{ item.duration }}</td>
+                <td>
+                    {% if item.owned %}
+                    <span style="color:green">Owned</span>
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td><a href="/plan/{{ item.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No plans available</p>
+        {% endif %}
+    </div>
+</body>
+</html>

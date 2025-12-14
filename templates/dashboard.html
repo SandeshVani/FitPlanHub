@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert alert-success">{{ m }}</div>
+        {% endfor %}
+
+        <h1>My Dashboard</h1>
+        <p>Hi {{ session['username'] }}</p>
+
+        <a href="/create" class="btn">+ New Plan</a>
+
+        <h2 class="mt-20">My Plans</h2>
+
+        {% if plans %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Days</th>
+                <th>Actions</th>
+            </tr>
+            {% for p in plans %}
+            <tr>
+                <td>{{ p.title }}</td>
+                <td>Rs {{ p.price }}</td>
+                <td>{{ p.duration }}</td>
+                <td>
+                    <a href="/edit/{{ p.id }}">Edit</a> |
+                    <a href="/delete/{{ p.id }}" onclick="return confirm('Sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No plans yet</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/feed">Feed</a>
+        <a href="/browse">Browse</a>
+        <a href="/following">Following</a>
+        <a href="/logout">Logout</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert alert-success">{{ m }}</div>
+        {% endfor %}
+
+        <h1>My Feed</h1>
+        <p>Plans from trainers you follow</p>
+
+        {% if plans %}
+        <table>
+            <tr>
+                <th>Plan</th>
+                <th>By</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            {% for item in plans %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td><a href="/trainer/{{ item.trainer_id }}">{{ item.trainer }}</a></td>
+                <td>Rs {{ item.price }}</td>
+                <td>
+                    {% if item.owned %}
+                    <span style="color:green">Owned</span>
+                    {% else %}
+                    -
+                    {% endif %}
+                </td>
+                <td><a href="/plan/{{ item.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>Follow trainers to see plans here</p>
+        <a href="/browse">Browse all plans</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FitPlanHub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">FitPlanHub</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+    </div>
+
+    <div class="container">
+        {% for m in get_flashed_messages() %}
+        <div class="alert alert-success">{{ m }}</div>
+        {% endfor %}
+
+        <h1>FitPlanHub</h1>
+        <p>Get fitness plans from real trainers</p>
+
+        <h2 class="mt-20">Plans Available</h2>
+
+        {% if plans %}
+        <table>
+            <tr>
+                <th>Plan</th>
+                <th>Trainer</th>
+                <th>Price</th>
+                <th>Days</th>
+            </tr>
+            {% for item in plans %}
+            <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.trainer }}</td>
+                <td>Rs {{ item.price }}</td>
+                <td>{{ item.duration }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No plans yet</p>
+        {% endif %}
+
+        <p class="mt-20"><a href="/signup" class="btn">Join Now</a></p>
+    </div>
+</body>
+</html>
