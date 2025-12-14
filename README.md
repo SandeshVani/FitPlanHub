@@ -21,33 +21,40 @@ Fitness platform where trainers create workout plans and users can purchase them
 - HTML/CSS
 - Flask-Bcrypt (for password hashing)
 
-## Setup
-
-1. Create MYSQL database:
-use : CREATE DATABASE fit_plan_hub;
+1. Create database in MySQL:
+   CREATE DATABASE fit_plan_hub;
 
 2. Run SQL to create tables (users, plans, subscriptions, follows)
 
-3. Install requirements (in terminal):
-use : pip install flask flask-bcrypt pymysql
+3. Install requirements:
+   pip install flask flask-bcrypt pymysql
 
-4.Update password in model.py
-Run:
-python app.py
+4. Update password in model.py
 
-5. Open: http://127.0.0.1:5000
+5. Run app:
+   python app.py
+
+6. Open browser:
+   http://127.0.0.1:5000
+
 
 ## Pages
 
-Home:	/
-Signup:	/signup
-Login:	/login
-Feed:	/feed
-Browse:	/browse
-Plan Details:	/plan/id
-Trainer Profile:	/trainer/id
-Dashboard:	/dashboard
+- Home: /
+- Signup: /signup
+- Login: /login
+- Feed: /feed
+- Browse Plans: /browse
+- Plan Details: /plan/id
+- Trainer Profile: /trainer/id
+- Following List: /following
+- Trainer Dashboard: /dashboard
+- Create Plan: /create
+- Edit Plan: /edit/id
 
+  
+---
 ## Author
 Sandesh Vani
+
 
